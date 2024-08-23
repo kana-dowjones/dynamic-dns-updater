@@ -23,13 +23,13 @@ fi
 
 
 
-CURRENT_IP=$(curl ifconfig.io)
-DYN_IP=$( host "$HOSTNAME.$DOMAIN" | sed -e "s/.*\ //" )
+CURRENT_IP=$(curl -s ifconfig.io)
+DYN_IP=$(host "$SUBDOMAIN.$DOMAIN" | sed -e "s/.*\ //")
 
 echo "CURRENT_IP: $CURRENT_IP DYN_IP: $DYN_IP"
 
 if [ "$DYN_IP" != "$CURRENT_IP" ]; then
     echo "Updating IP for $SUBDOMAIN.$DOMAIN from $DYN_IP to $CURRENT_IP"
-    curl "https://dynamicdns.park-your-domain.com/update?host=$SUBDOMAIN&domain=$DOMAIN&password=$PASSWORD"
+    curl  -s "https://dynamicdns.park-your-domain.com/update?host=$SUBDOMAIN&domain=$DOMAIN&password=$PASSWORD"
 
 fi

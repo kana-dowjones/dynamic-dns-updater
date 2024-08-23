@@ -1,9 +1,9 @@
 FROM alpine:3.9
 
-RUN apk update apk install -y \
+RUN apk update && apk add \
 #    vim \
 #    mc \
-#    dnsutils \
+    bind-tools \
 #    wget \
     curl
 
